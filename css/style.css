@@ -1,0 +1,64 @@
+/* комент */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  transition: background 0.3s, color 0.3s;
+}
+header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 74px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+nav {
+    display: flex;
+    gap: 20px;
+}
+nav a{
+    text-decoration: none;
+} 
+button {
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+}
+section {
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+/* Светлая тема */
+.light-theme {
+  background: #ffffff;
+  color: #000000;
+}
+.light-theme header {
+  background: #f0f0f0;
+}
+.light-theme button {
+  background: #dddddd;
+  color: #000000;
+}
+/* Тёмная тема */
+.dark-theme {
+  background: #121212;
+  color: #ffffff;
+}
+.dark-theme header {
+  background: #1e1e1e;
+}
+.dark-theme button {
+  background: #333333;
+  color: #ffffff;
+}

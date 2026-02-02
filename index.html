@@ -1,0 +1,96 @@
+<!DOCTYPE html> <!-- задача 1 -->
+<html lang="ru"> <!-- пока верстаеш ставь "ru" чтобы при тестах не скакал переводчик -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homework_9</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- подключи стили -->
+</head>
+<body class="light-theme"> <!-- клас в style.css для переключения светлой/темной -->
+    <!-- Используйте семантические теги: <header>, <footer>, <nav>, <main>, <article>, <section>, <h1>...<h6> -->
+    <header>
+        <!-- <h1> - один на страницу (основной заголовок) -->
+        <h1><strong>Sample</strong></h1> 
+        <nav>
+            <a href="#"><strong>Sample</strong></a> <!-- пустая ссылка (# - заглушка) -->
+        </nav>
+        <button id="theme-toggle">🌙 Тёмная тема</button> <!-- id кнопки в main.js для переключения светлой/темной -->
+    </header>
+    <main>
+        <section>
+            <div id="app">
+                <h1>{{ hello }}</h1> <!-- задача 2 -->
+                <div>
+                    <h2>Счетчик</h2>
+                    <p>Значение: {{ count }}</p> <!-- задача 3 -->
+                    <button @click="less">Минусь</button>
+                    <button @click="more">Пилюсь</button>
+                </div>
+                <div>
+                    <h2>Динамическое изображение</h2> <!-- задача 4 -->
+                    <img :src="imageUrl" alt="preview">
+                    <div>
+                        <input type="text" v-model="inputUrl" placeholder="Вставь URL изображения">
+                        <button @click="applyUrl">Показать</button>
+                    </div>
+                </div>
+                <div>
+                    <h2>Условный рендеринг</h2> <!-- задача 5 -->
+                    <button @click="toggleText">
+                        {{ isShow ? 'Скрыть текст' : 'Показать текст' }}
+                    </button>
+                    <p v-if="isShow">Этот текст вы видите потому как нажали кнопку, хотите скрыть нажмите - скрыть</p>
+                </div>
+                <div>
+                    <h2>Список дел</h2> <!-- задача 6 -->
+                    <input type="text" v-model="newTask" placeholder="Новая задача" @keyup.enter="addTask">
+                    <button @click="addTask">Добавить</button>
+                    <ul>
+                        <li v-for="(task, index) in tasks" :key="index">
+                            {{ task }}
+                            <button @click="removeTask(index)">✖</button>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Изменение текста</h2> <!-- задача 7 -->
+                    <input type="text" v-model="inputText" placeholder="Введите текст">
+                    <button @click="showText">Показать</button>
+                    <p>{{ displayedText }}</p>
+                </div>
+                <div>
+                    <h2>Сброс формы</h2> <!-- задача 8 -->
+                    <input type="text" v-model="formName" placeholder="Имя">
+                    <input type="text" v-model="formEmail" placeholder="Email">
+                    <button @click="resetForm">Сбросить</button>
+                </div>
+                <div>
+                    <h2>Поворот картинки</h2> <!-- задача 9 -->
+                    <img :style="{ transform: `rotate(${angle}deg)` }"
+                        src="https://i.pinimg.com/736x/69/79/42/697942a691d45d51ef4d68279e8c0402.jpg" alt="картинка">
+                    <button @click="rotateImage">Повернуть</button>
+                </div>
+                <div>
+                    <h2>Таймер</h2> <!-- задача 10 -->
+                    <p>{{ timer }}</p>
+                    <button @click="startTimer">Старт</button>
+                    <button @click="stopTimer">Стоп</button>
+                </div>
+                <div>
+                    <h2>Полное имя</h2> <!-- задача 11 -->
+                    <input type="text" v-model="firstName" placeholder="Имя">
+                    <input type="text" v-model="lastName" placeholder="Фамилия">
+                    <p>{{ fullName }}</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <!-- <div> и <span> - только для группировки, если нет семантического аналога, с классами и ID -->
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- подключи axios для HTTP запросов через CND (не локально!) -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> <!-- подключи вьюшку через CND (не локально!) -->
+    <!-- задача 1 -->
+    <script src="js/main.js"></script> <!-- подключи логику -->    
+</body>
+</html>
