@@ -1,16 +1,27 @@
 // переключение светлой/темной
 const toggleBtn = document.getElementById('theme-toggle');
 const body = document.body;
-
+// при загрузке страницы проверяем сохранённую тему
+const savedTheme = localStorage.getItem('theme'); // создаем константу в которую получаем значение по ключу 'theme' (название ключа зависит от нашего - ХАТЮ)
+    if (savedTheme) { // проверяем если значение есть - подключаем его, если нет - оно по умолчанию
+        body.classList.remove('light-theme', 'dark-theme'); // убираем возможные старые классы
+        body.classList.add(savedTheme); // добавляем сохранённый класс темы
+        toggleBtn.textContent = savedTheme === 'dark-theme' ? '☀️ Светлая тема' : '🌙 Тёмная тема'; // меняем текст кнопки в зависимости от темы
+    }
 toggleBtn.addEventListener('click', () => {
-  body.classList.toggle('dark-theme');
-  body.classList.toggle('light-theme');
+    body.classList.toggle('dark-theme');
+    body.classList.toggle('light-theme');
 
-  if (body.classList.contains('dark-theme')) {
-    toggleBtn.textContent = '☀️ Светлая тема';
-  } else {
-    toggleBtn.textContent = '🌙 Тёмная тема';
-  }
+    let currentTheme;
+    if (body.classList.contains('dark-theme')) {
+        toggleBtn.textContent = '☀️ Светлая тема';
+        currentTheme = 'dark-theme';
+    } else {
+        toggleBtn.textContent = '🌙 Тёмная тема';
+        currentTheme = 'light-theme';
+    }
+    // сохраняем выбор в localStorage
+    localStorage.setItem('theme', currentTheme);
 });
 // контент
 const app = Vue.createApp({
@@ -64,7 +75,10 @@ const app = Vue.createApp({
             this.angle += 15;
         },
         startTimer() { // задача 10
-            this.intervalId = setInterval(() => { this.timer++; }, 1000);
+            if (this.intervalId) return; // уже запущен, не создаём новый
+                this.intervalId = setInterval(() => {
+                    this.timer++;
+                }, 1000);
         },
         stopTimer() { // задача 10
             clearInterval(this.intervalId);
